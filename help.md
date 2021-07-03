@@ -162,7 +162,30 @@ list.addEventListener('click', (e) => {
 
 ### lesson 11 ---->  Interacting with forms 
 
+const forms = document.forms;
+console.log(forms);
+# This provides us the forms present along with their id's  and passing the id - gives the exact present form 
+console.log(forms['add-book']);
+
+Array.from(forms).forEach(function(form){
+  console.log(form);
+});
+
+# here what we did was :: 1) prevented the default behaviour of the add-book - e -> denoting the addform-> which actually has add-book -> which has default property of refreshing the page when clicked and hence -> we prevent its default behaviour 2) take a input i.e. it should be such that when we add a value to the addform form , the platform accepts it and display it to the screen 
+const addForm = forms['add-book'];
+addForm.addEventListener('submit', function(e){
+  e.preventDefault();
+
+  # Accepts the input given to it -> and stores in the value variable
+  const value = addForm.querySelector('input[type="text"]').value;
+  console.log(value);
+});
+
+
+### lesson 12 --->  adding info via the form/ button
+
 const list = document.querySelector('#book-list ul');
+const forms = document.forms;
 
 // delete books
 list.addEventListener('click', (e) => {
@@ -172,17 +195,38 @@ list.addEventListener('click', (e) => {
   }
 });
 
-const forms = document.forms;
-console.log(forms);
-console.log(forms['add-book']);
-
-Array.from(forms).forEach(function(form){
-  console.log(form);
-});
-
+// add books
 const addForm = forms['add-book'];
 addForm.addEventListener('submit', function(e){
   e.preventDefault();
+
+  // create elements
   const value = addForm.querySelector('input[type="text"]').value;
-  console.log(value);
+
+  # we got the required value we got of the book name and similar to how the other books were present , in order to save this book name , we need to create li, span of bookname and span tag for deleteBtn..... and then add the text content value and then append to the DOM using appendChild 
+  const li = document.createElement('li');
+  const bookName = document.createElement('span');
+  const deleteBtn = document.createElement('span');
+
+  // add text content
+  bookName.textContent = value;
+  deleteBtn.textContent = 'delete';
+  # delete will come after bookName
+
+  // append to DOM
+  li.appendChild(bookName);
+  li.appendChild(deleteBtn);
+  # append li to ul as its child 
+  list.appendChild(li);
+  //list.insertBefore(li, list.querySelector('li:first-child'));
+
+  // add classes
+  # If this wasn't added then the book name would be shown as it is , but the delete button wouldn't show up since we haven't added the required class name acc to which it will function , and also we can add class name like bookName.className+= " name"  but this is generally messy so we use classlist.add and remove 
+  bookName.classList.add('name');
+  deleteBtn.classList.add('delete');
 });
+
+
+#### lesson 13 ------> changing styles and classes --> added classname to the above
+
+#### lesson 14 -------> 
