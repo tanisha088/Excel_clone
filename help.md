@@ -116,11 +116,13 @@ console.log('#book-list previous element sibling:', bookList.previousElementSibl
 bookList.previousElementSibling.querySelector('p').innerHTML += '<br />Too cool for everyone else!';
 
 
-## lesson 9 --> DOM events / remove content  --->> EVENT listeners are those which provide 
+## lesson 9 --> DOM events / remove content  --->> EVENT listeners are those which provide us to click and respond to various tasks 
 
-const listItems = document.querySelectorAll('#book-list ul li');
+const listItems = document.querySelectorAll('#book-list.delete');
 
 Array.from(listItems).forEach(function(item){
+
+# the click is the event which is present here and (e) defines the callback function which gets fired when we perform the click event by clicking on it . Now, in this case, what we want to do is that when we are clicking on the delete button (since the listitems will be having reference to all the delete buttons , and for each item , when we are attaching a click working with it , on clicking on it , the callback  will activate the function , what we want on delete is to delete the items in li , so we get the e.target{actual delete button}.parentelement -> give the li , and now to delete this li , we will get its parent ui and then delete its child li by li.parentNode.removeChild ... so now, we have added the functionality with the delete button, (item.add) that when it is clicked , the list gets deleted)
   item.addEventListener('click', (e) => {
 
     const li = e.target.parentElement;
@@ -135,7 +137,52 @@ Array.from(listItems).forEach(function(item){
 
 const link = document.querySelector('#page-banner a');
 
+## this has been done to change the default behaviour, what we did was get the href line and add the functionality that whenever clicked --> we prevent the default functioning from happening , i.e. clicking on the link won't take to the given website.
 link.addEventListener('click', function(e){
   e.preventDefault();
   console.log('Navigation to', e.target.textContent, 'was prevented');
+});
+
+
+### lesson 10 ---->  EVENT BUBBLING  ---> 
+
+Instead of associating a "delete" button clicking functionality with each of the buttons present separately .. what we can do is that we attach the click functionality with the ul , i.e. the parent of parent of the delete buttons. And when only when the click has been made on the delete button , we will delete the corresponding list , else if anywhere else , we will do nothing. This is a lot easier then what was being done earlier.
+
+
+const list = document.querySelector('#book-list ul');
+
+// delete books
+list.addEventListener('click', (e) => {
+  if(e.target.className == 'delete'){
+    const li = e.target.parentElement;
+    li.parentNode.removeChild(li);
+  }
+});
+
+
+### lesson 11 ---->  Interacting with forms 
+
+const list = document.querySelector('#book-list ul');
+
+// delete books
+list.addEventListener('click', (e) => {
+  if(e.target.className == 'delete'){
+    const li = e.target.parentElement;
+    li.parentNode.removeChild(li);
+  }
+});
+
+const forms = document.forms;
+console.log(forms);
+console.log(forms['add-book']);
+
+Array.from(forms).forEach(function(form){
+  console.log(form);
+});
+
+const addForm = forms['add-book'];
+addForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  const value = addForm.querySelector('input[type="text"]').value;
+  console.log(value);
 });
