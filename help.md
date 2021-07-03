@@ -229,4 +229,61 @@ addForm.addEventListener('submit', function(e){
 
 #### lesson 13 ------> changing styles and classes --> added classname to the above
 
-#### lesson 14 -------> 
+#### lesson 14 ------->  ATTRIBUTES 
+
+book.getAttribute('')-> can be class or href etc.
+book.setAttribute('element','new value')
+book.has/remove/set/getAttribute
+
+##### lesson 15 ----->  checkboxes and change events 
+
+# when box is checked -> hide everything else display all
+// hide books
+const hideBox = document.querySelector('#hide');
+hideBox.addEventListener('change', function(e){
+  if(hideBox.checked){
+      #ul mei jo hai sabka display none kar dia
+    list.style.display = "none";
+  } else {
+    list.style.display = "initial";
+  }
+});
+
+
+### lesson 16 ----->   CUSTOM SEARCH FILTER :::: 
+
+// filter books
+const searchBar = forms['search-books'].querySelector('input');
+searchBar.addEventListener('keyup', (e) => {
+  const term = e.target.value.toLowerCase();
+  const books = list.getElementsByTagName('li');
+  Array.from(books).forEach((book) => {
+    const title = book.firstElementChild.textContent;
+# indexOf will give the index of e.target.value (the value given as input) in the title string and if any the input value is anywhere occuring inside the title .. then we will keep it else not  
+    if(title.toLowerCase().indexOf(e.target.value) != -1){
+      book.style.display = 'block';
+    } else {
+      book.style.display = 'none';
+    }
+  });
+});
+
+
+# lesson 17 ----->>> 
+
+// tabbed content
+const tabs = document.querySelector('.tabs');
+const panels = document.querySelectorAll('.panel');
+tabs.addEventListener('click', (e) => {
+  if(e.target.tagName == 'LI'){
+    const targetPanel = document.querySelector(e.target.dataset.target);
+    Array.from(panels).forEach((panel) => {
+      if(panel == targetPanel){
+        panel.classList.add('active');
+      }else{
+        panel.classList.remove('active');
+      }
+    });
+  }
+});
+
