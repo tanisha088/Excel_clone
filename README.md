@@ -54,5 +54,12 @@ Dual binding has been implemented here--->  whenever we click on any cell the to
    5. Also we need to check at the start that whether the formula syntax is valid or not.
 
 
-Now, when we have to enter the formulae, what we do is to type the formula and then press enter, which means, ENTER is the symbol that the formula has been written and we want the current cell to be updated by that particular value of the output of the formulae. SEE Line 298 -> So when we press a enter key and formula is present, we will check if prev formula was not null then we will remove it and then evaluate the new formula { using the evaluate function which will simply first split the string and then for each of the values e.g. A1 OR B3 etc. get the value present at those point and then replace these values inside the formula and then call the eval function which will automatically (inbuilt function) give the result values} . Now, set the current value of this cell as the evaluated result. 
+Now, when we have to enter the formulae, what we do is to type the formula and then press enter, which means, ENTER is the symbol that the formula has been written and we want the current cell to be updated by that particular value of the output of the formulae. See Line 274 ->
+ for all the cells if we focus and then blur outside i.e. we update some value and then click outside somewhere out of that cell i.e. blur   ======  DOUBT =======
+ 
+ 
+ SEE Line 298 -> So when we press a enter key and formula is present, we will check if prev formula was not null then we will remove it i.e. remove formula wherein we will remove the current node as the children of its previous parent . Then evaluate the new formula { using the evaluate function which will simply first split the string and then for each of the values e.g. A1 OR B3 etc. get the value present at those point and then replace these values inside the formula and then call the eval function which will automatically (inbuilt function) give the result values} . Now, set the current value of this cell as the evaluated result. After that set the formula for this and also set the current cell as the children of its parent . Next and the last thing to do is to recursively change the values of the children as well which will get affected due to the change in their parents value . Parent value change will change the value of children and children value change will lead to its disassociation from its parent i.e. now parent change will not affect the children change and hence these children will get removed from these parents. 
+
+
+
 
