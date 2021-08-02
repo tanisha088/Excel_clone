@@ -54,4 +54,5 @@ Dual binding has been implemented here--->  whenever we click on any cell the to
    5. Also we need to check at the start that whether the formula syntax is valid or not.
 
 
+Now, when we have to enter the formulae, what we do is to type the formula and then press enter, which means, ENTER is the symbol that the formula has been written and we want the current cell to be updated by that particular value of the output of the formulae. SEE Line 298 -> So when we press a enter key and formula is present, we will check if prev formula was not null then we will remove it and then evaluate the new formula { using the evaluate function which will simply first split the string and then for each of the values e.g. A1 OR B3 etc. get the value present at those point and then replace these values inside the formula and then call the eval function which will automatically (inbuilt function) give the result values} . Now, set the current value of this cell as the evaluated result. 
 

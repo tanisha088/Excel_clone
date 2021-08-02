@@ -355,7 +355,7 @@ function setFormula(value, formula, rid, cid, address) {
     cellObject.value = value;
     cellObject.formula = formula;
     let formulaTokens = formula.split(" ");
-    (A1 + A2)
+    //(A1 + A2)
     for (let i = 0; i < formulaTokens.length; i++) {
         let firstCharOfToken = formulaTokens[i].charCodeAt(0);
         if (firstCharOfToken >= 65 && firstCharOfToken <= 90) {
