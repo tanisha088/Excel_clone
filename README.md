@@ -1,3 +1,5 @@
+Js code cannot run independently . It needs to be called either inside the browser or via an env and hence we have mentioned all the scripts as < script >  script_name < / script >
+
 1. This is an excel clone with  grid being : columns from A-Z and rows from 1-100
 
 2. Following formatting options are available ::
@@ -47,7 +49,9 @@ Dual binding has been implemented here--->  whenever we click on any cell the to
    1. The value of cell is defined by the given formula, if a3 is used to define the value of a4 , then change in a3 will lead to change in the value of a4 and if we change the value of a4 ourselves, then a3 would stop affecting the value of a4.
    2. Constraints ::: we can only set the formula in the formula bar .  There are only 26 columns and 1-100 rows.
    3. Every token of the formula must be space separated.
-   
+   In the formula, there is associated , formula and children array with all of the cells present. Now, if we want to apply a formula, the formula gets added to the cell and as well as the children and then we simply change the children value using the formula. Now, if the value of any children gets changed, what we do is that since we have the formula with us, so we will go the parents(parsing the formula present ) and then remove the cell  from their children array and also the formula of the cell will be replaced by the new value and the formula and corresponding children will be removed from the parent of the changed cell.
+   4. Cycle detection a2->2*a1 , b1->2*a1 and a2->2*b1 =>cycle  => test it first 
+   5. Also we need to check at the start that whether the formula syntax is valid or not.
 
 
 
