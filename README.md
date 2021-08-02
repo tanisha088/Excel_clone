@@ -24,3 +24,30 @@ getRIdCIdfromAddress fn in script.js
 Here,in what is happening is that we are converting the address to the form of row and column id e.g. if the cell is C3 then the row corresponding to it would be 3 and column id  = 2 so the cordinates are actually 3,2 .
 
 How this font feature is actually working ?? -> line 11 -> get the element of the bold class -> this class is made inside the bui container (line 26 of index.html) and is of type button .. and so we get this button and we wil add the event listener --> line 190 --> herein we will see if it contains active-bttn --> basically this is used like when we click on the bold button then it becomes grey and this is done using the active-bttn , also we need to get the value of the row and column id from the adressBar (get address from AdressBar and then get the row and col id from getRIdCIdfromAddress function and then using the document object we will get the element of the row and col id and then we will check if the bold button is false, then add bold else remove active-bttn and bold=false). The AdressBox is a text type box . See line 68 of script.js -> whenever we click on a certain cell , an adress gets assigned to the AdressBox already and then various functions work by taking the cell name from that , get the indice of the row and column and then apply whatever functionality they want.
+
+
+How to have the toolbar in sync  -> everything in script.js -> e.g. see 166-167 -> if one is active dull the rest ==>  like this many are going on
+
+Dual binding has been implemented here--->  whenever we click on any cell the toolbaar experience changes accordingly (if value inside is bold,then bold becomes black and so on) and whenever we click on any of the toolbar options, then the effect is seen on the cell values and hence this is known as dual binding.{The effect of changes on the toolbar is seen on the elements of the grid as jab humne grid element pe click kiya .. address bar got the value, the toolbar will get the adress of the cell , i.e. the actual cell and accordingly perform the operations using the document API by gathering its rows and columns.}
+
+
+
+
+   FLOW OF THE PROJECT :::::
+
+   1. Construct a grid in the init.js with initialising the columns , rows and then the grid cell elements.
+   2. Achieve the functionality of filling the adress bar with the adress of the given cell we have clicked upon.
+   3. Consider each object of the 2d array as a cell as a object 
+   4. Then we added the functionalities of all the elements one by one .. In script.js we have initially at the start obtained the objects of all the functionalities of the toolbar using the document API , so as to apply the required changes over them.
+   5. Then we implement dual binding i.e. affect of functioning on toolbar is seen and vice-versa of cells on toolbar.
+   6. After that we will implement the formula.
+
+   FORMULA -->
+
+   1. The value of cell is defined by the given formula, if a3 is used to define the value of a4 , then change in a3 will lead to change in the value of a4 and if we change the value of a4 ourselves, then a3 would stop affecting the value of a4.
+   2. Constraints ::: we can only set the formula in the formula bar .  There are only 26 columns and 1-100 rows.
+   3. Every token of the formula must be space separated.
+   
+
+
+
